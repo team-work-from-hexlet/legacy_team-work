@@ -11,13 +11,8 @@ different mini-programs for skill improvement
 # Участники воркшопа:
 * [Аркадий (eye)]( https://github.com/maoeye18 "Аркадий (eye)")  
 * [Александр (sanykey)]( https://github.com/sanykey "Александр (sanykey)")  
-<<<<<<< Updated upstream
 * [Александр (MacOSO)]( https://github.com/MacOSO "Александр (MacOSO)")    
 * [Илья (capatillo)](https://github.com/capatillo "Илья (capatillo)")
 * [Максим (francoder)](https://github.com/francoder "Максим (francoder)")  
-* [Игорь (openlibser)](https://github.com/openlibser "Игорь (openlibser)")    
-=======
-* [Александр (MacOronSO)]( https://github.com/MacOSO "Александр (MacOSO)")    
-* [Максим (francoder)](https://github.com/francoder "Максим (francoder)")  
 * [Игорь (openlibser)](https://github.com/openlibser "Игорь (openlibser)")   
->>>>>>> Stashed changes
+
