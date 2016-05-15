@@ -74,7 +74,7 @@
     buildHtml: function() {
 
       if(!this.lines.length) {
-        this.rootElem.innerHTML = 'Ничего нет';
+        this.rootElem.innerHTML = '<li class="center">Ничего нет</li>';
         return;
       }
 

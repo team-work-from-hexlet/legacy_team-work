@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="main">
+        <h1>Pomodoro</h1>
+        <div id='timers'></div>
+        <div class="timer-ui"></div>
+            <div class="break">
+                <div class="heading">Break</div>
+                <span class="inc-dec" id="minus-break">-</span>
+                <span id="break-set">%breaktime%</span>
+                <span class="inc-dec" id="plus-break">+</span>
+            </div>
+        <div class="vert-line"></div>
+        <div class="work">
+        <div class="heading">Work</div>
+        <span class="inc-dec" id="minus-work">-</span>
+        <span id="break-set">%worktime%</span>
+        <span class="inc-dec" id="plus-work">+</span>
+      </div>
+        <div>
+            <button value="Start" id="createTimer">Start</button>
+             <br>
+            <button value="Play" id="resumeButton">Play</button>
+            <button value="Pause" id="pauseButton">Pause</button>
+            <button value="Reset" id="resetButton">Reset</button>
+        </div>
+    </div>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

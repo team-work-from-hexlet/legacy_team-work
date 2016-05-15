@@ -1,0 +1,68 @@
+body {
+    background-color: #d6cfc9;
+    font-family: Arial, sans-serif;
+    font-size: 82.5%;
+    padding: 2em;
+    text-align: center;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+h1{
+    text-align: center;
+    font-weight: 500;
+}
+#timers{
+    font-size: 100px;
+}
+#createTimer {
+    border-radius: 1px;
+    font-family: open sans;
+    color: #FFF;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px 15px 8px 15px;
+    border: solid #FFF 1px;
+    text-decoration: none;
+    background: #d6cfc9;
+}
+#createTimer:hover {
+    text-decoration: none;
+}
+#pauseButton, #resumeButton, #resetButton {
+    border-radius: 1px;
+    font-family: open sans;
+    color: #FFF;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+    border: solid #FFF 1px;
+    text-decoration: none;
+    background: #d6cfc9;
+}
+#pauseButton:hover, #resumeButton:hover, #resetButton:hover {
+    text-decoration: none;
+}
+.time-ui{
+  color: #4a572c;
+  font-size: 2em;
+  margin: 0 auto;
+  margin-top: 3%;
+  text-align: center;
+}
+.inc-dec{
+    cursor: pointer;
+}
+div{
+    display: inline-block;
+}
+.vert-line{
+    background-color: #4a572c;
+    height: 2em;
+    margin: 0 5%;
+    width: 3px;
+}
+.heading{
+    font-size: 0.8em;
+    margin-bottom: 0.8em;
+}
