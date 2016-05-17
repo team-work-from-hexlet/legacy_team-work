@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register test/main.test.js"
+    "test": "mocha --compilers js:babel-core/register"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,9 @@
     "chai": "^3.5.0",
     "eslint": "^2.10.1",
     "mocha": "^2.4.5",
+    "rewire": "^2.5.1",
+    "sinon": "^1.17.4",
+    "timer-shim": "^0.3.0",
     "w3cjs": "^0.3.0"
   }
 }
