@@ -84,4 +84,32 @@ describe('Timer test', () => {
     t.reset();
     assert.equal(t.getRemainingTime(), 2000);
   });
+  
+  it('should export timer to JSON', () => {
+    let t = new Timer('jsonTestTimer', 1000);
+    t.start();
+    clock.tick(500);
+    
+    let expectedJSON = JSON.stringify({
+      title: 'jsonTestTimer',
+      duration: 1000,
+      remainingTime: 500,
+    });
+    
+    assert.strictEqual(t.exportToJSON(), expectedJSON);
+  });
+  
+  it('should create timer obj from JSON', () => {
+    let data = {
+      title: 'timerFromJSON',
+      duration: 1111,
+      remainingTime: 322,
+    };
+    let jsonData = JSON.stringify(data);
+    
+    let timerFromJSON = Timer.createFromJSON(jsonData);
+    assert.strictEqual(timerFromJSON.title, data.title);
+    assert.strictEqual(timerFromJSON.duration, data.duration);
+    assert.strictEqual(timerFromJSON.getRemainingTime(), data.remainingTime);
+  })
 });

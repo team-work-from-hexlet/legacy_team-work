@@ -2,6 +2,7 @@ const STATES = {
     paused: Symbol('paused'),
     running: Symbol('running'),
 };
+Object.freeze(STATES);
 
 //private props
 const _state = Symbol('state');
@@ -16,6 +17,13 @@ const Timer = class {
     return STATES;
   }
   
+  static createFromJSON(jsonStr) {
+    let dataObj = JSON.parse(jsonStr);
+    let timer = new Timer(dataObj.title, dataObj.duration);
+    timer[_remainingTime] = dataObj.remainingTime;
+    return timer;
+  }
+  
   constructor(title='', duration=1500000) {
     this.title = title;
     this.duration = duration;
@@ -28,7 +36,7 @@ const Timer = class {
   }
   
   getRemainingTime() {
-      return this[_remainingTime];
+    return this[_remainingTime];
   }
   
   start() {
@@ -52,6 +60,13 @@ const Timer = class {
     this[_remainingTime] = this.duration;
   }
   
+  exportToJSON() {
+    return JSON.stringify({
+      title: this.title,
+      duration: this.duration,
+      remainingTime: this[_remainingTime]
+    });
+  }
 };
 
 export default Timer;

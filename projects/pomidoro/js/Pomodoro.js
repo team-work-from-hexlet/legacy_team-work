@@ -1,62 +1,76 @@
 import Timer from './Timer';
 
+//private props
+const _timers = Symbol('timers');
+const _domElems = Symbol('domElems');
+
 class Pomodoro {
+  
+  constructor() {
+    this[_timers] = [];
+    this[_domElems] = {};
+  }
+  
+  init() {
+    this[_domElems].create = document.getElementById('createTimer');
+    this[_domElems].timers = document.getElementById('timers');
     
-    constructor() {
-        this.timers = [];
-        this.domElms = [];
-    }
-    
-    
-    init() {
-        this.domElms.create = document.getElementById('createTimer');
-        this.domElms.timers = document.getElementById('timers');
+    // this.addListeners(true);
+    return this;
+  }
+  
+  
+  setTimers(timersData) {
+    this[_timers] = timersData.map((data) => {
+      return new Timer(data.title, data.duration);
+    });
+    return this;
+  }
+  
+  getTimers() {
+    return this[_timers].map((timer) => { return {...timer}; });
+  }
+  
+  addTimer(timerInfo) {
+    let timer = new Timer(timerInfo.title, timerInfo.duration);
+    this[_timers].push(timer);
+    return this;
+  }
+  
+  removeTimer(timerId) {
+    this[_timers].splice(timerId,1);
+    return this;
+  }
+  
+  getTimerById(timerId) {
+    return {...this[_timers][timerId]};
+  }
+  
+  addListeners(early) {
+    if (early) {
+      this.domElms.create.addEventListener((event) => {
+          
+      });
+    } else {
         
-        this.addListeners(true);
     }
+  }
+  
+  prepareHTML() {
+    return "<div></div>";
+  }
+  
+  buildHtml() {
     
-    
-    setTimers(timers) {
-        this.timers = timers;
-        return this;
-    }
-    
-    getTimers() {
-        return this.timers;
-    }
-    
-    addTimer(timer) {
-        if ( !(timer instanceof Timer) ) {
-            throw new Error('invalid timer obj');
-        }
-        this.timers.push(timer);
-    }
-    
-    addListeners(early) {
-        if (early) {
-            this.domElms.create.addEventListener((event) => {
-                
-            });
-        } else {
-            
-        }
-    }
-    
-    prepareHTML() {
-        return "<div></div>";
-    }
-    
-    buildHtml() {
-        
-    }
-    
-    save() {
-        window.localStorage.setItem('pomodoro-timers', JSON.stringify(this.timers));
-    }
-    
-    load() {
-        return JSON.parse(window.localStorage.getItem('pomodoro-timers')) || [];
-    }
+  }
+  
+  save() {
+    window.localStorage.setItem('pomodoro-timers', JSON.stringify(this.timers));
+  }
+  
+  load() {
+    return JSON.parse(window.localStorage.getItem('pomodoro-timers')) || [];
+  }
 };
 
 export default Pomodoro;
