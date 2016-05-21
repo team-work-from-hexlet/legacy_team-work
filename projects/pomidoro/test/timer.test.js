@@ -112,4 +112,13 @@ describe('Timer test', () => {
     assert.strictEqual(timerFromJSON.duration, data.duration);
     assert.strictEqual(timerFromJSON.getRemainingTime(), data.remainingTime);
   })
+  
+  it('test pause time', () => {
+    let t = new Timer('testPause', 5000);
+    t.start();
+    assert.isNotTrue( t.getPauseTime() );
+    clock.tick(1500);
+    t.pause();
+    assert.equal(t.getPauseTime(), t.getRemainingTime());
+  });
 });

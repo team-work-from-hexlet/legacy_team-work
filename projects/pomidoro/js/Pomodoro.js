@@ -19,6 +19,9 @@ class Pomodoro {
     return this;
   }
   
+  startAllTimers() {
+    this[_timers].forEach((timer) => timer.start() );
+  }
   
   setTimers(timersData) {
     this[_timers] = timersData.map((data) => {
@@ -57,7 +60,14 @@ class Pomodoro {
   }
   
   prepareHTML() {
-    return "<div></div>";
+    let html = '';
+    html += '<div>';
+    html += this[_timers][0].title;
+    html += " - ";
+    html += this[_timers][0].getRemainingTime();
+    html += '</div>';
+    
+    return html;
   }
   
   buildHtml() {

@@ -12,9 +12,12 @@ h1{
     text-align: center;
     font-weight: 500;
 }
-#timers{
+.timer{
     font-size: 100px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
+.addForm {}
 #createTimer {
     border-radius: 1px;
     font-family: open sans;
@@ -25,11 +28,14 @@ h1{
     border: solid #FFF 1px;
     text-decoration: none;
     background: #d6cfc9;
+    margin-bottom: 5px;
 }
 #createTimer:hover {
     text-decoration: none;
 }
-#pauseButton, #resumeButton, #resetButton {
+#pauseButton, #resumeButton, #resetButton, #deleteButton, #addButton {
+    margin-bottom: 5px;
+    margin-left: 3px;
     border-radius: 1px;
     font-family: open sans;
     color: #FFF;
@@ -50,9 +56,6 @@ h1{
   margin-top: 3%;
   text-align: center;
 }
-.inc-dec{
-    cursor: pointer;
-}
 div{
     display: inline-block;
 }
@@ -65,4 +68,85 @@ div{
 .heading{
     font-size: 0.8em;
     margin-bottom: 0.8em;
+}
+/* addForm */
+#timerTitle, #workTime, #breakTime {
+    
+}
+input[type=range] {
+    -webkit-appearance: none;
+    width: 300px;
+    margin-top: 10px;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+    margin-top: -4px;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+
+input[type=range]::-moz-range-track {
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+
+input[type=range]:-moz-focusring{
+    outline: 1px solid white;
+    outline-offset: -1px;
+}
+
+input[type=range]::-ms-track {
+    width: 300px;
+    height: 5px;
+    background: transparent;
+    border-color: transparent;
+    border-width: 6px 0;
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
 }

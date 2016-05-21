@@ -7,21 +7,38 @@
 </head>
 <body>
     <div id="main">
-        <h1>Pomodoro</h1>
-        <div id='timers'></div>
+    <div id="addForm"> <!-- форма добавления -->
+        <script type="text/javascript">
+            function outputWorkUpdate(vol) {
+    	        document.querySelector('#volumeWork').value = vol;
+            }
+            function outputBreakUpdate(vol) {
+    	        document.querySelector('#volumeBreak').value = vol;
+            }
+            function formShow() {
+            document.querySelectorAll('.addForm>div')[0].style.display = '';
+            }
+        </script>
+        <button value="Add form" id="addButton" onclick="formShow()">Add form</button>
+        <div class="addForm">
+            <label for="timerTitle">Timer title: </label><input id="timerTitle" type="text" name="Title"/><br>
+            <label for="workTime">Work time: </label><input id="workTime" type="range" min="1" step="1" max="180" value="25" name="Title" oninput="outputWorkUpdate(value)"/><output for="workTime" id="volumeWork">25</output><br>
+            <label for="breakTime">Break time: </label><input id="breakTime" type="range" min="1" step="1" value="5" max="30" name="Title" oninput="outputBreakUpdate(value)"/><output for="breakTime" id="volumeBreak">5</output><br>
+        </div>
+    </div>
+    
+    <div id="timers">
+        <h1 class="timer-title">Pomodoro</h1> <!-- через класс timer-title выводится название таймера -->
+        <div class='timer'></div> <!-- выводится сам таймер -->
         <div class="timer-ui"></div>
             <div class="break">
-                <div class="heading">Break</div>
-                <span class="inc-dec" id="minus-break">-</span>
+                <div class="heading">Break</div> <!-- время перерыва таймера -->
                 <span id="break-set">%breaktime%</span>
-                <span class="inc-dec" id="plus-break">+</span>
             </div>
         <div class="vert-line"></div>
         <div class="work">
-        <div class="heading">Work</div>
-        <span class="inc-dec" id="minus-work">-</span>
+        <div class="heading">Work</div> <!-- время работы таймера -->
         <span id="break-set">%worktime%</span>
-        <span class="inc-dec" id="plus-work">+</span>
       </div>
         <div>
             <button value="Start" id="createTimer">Start</button>
@@ -29,8 +46,12 @@
             <button value="Play" id="resumeButton">Play</button>
             <button value="Pause" id="pauseButton">Pause</button>
             <button value="Reset" id="resetButton">Reset</button>
+            <br>
+            <button value="Delete" id="deleteButton">Delete</button>
+        </div>
         </div>
     </div>
-<script type="text/javascript" src="js/main.js"></script>
+    <div id='test'></div>
+    <script type="text/javascript" src="dist/main-bundle.js"></script>
 </body>
 </html>

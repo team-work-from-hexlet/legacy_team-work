@@ -12,6 +12,8 @@ import Timer from '../js/Timer';
 describe('Pomodoro test', () => {
   it('checkHTML', (done) => {
     
+    pomodoro.addTimer({title: 'lala', duration: 100});
+    
     let html = `
       <!DOCTYPE HTML>
       <html>
