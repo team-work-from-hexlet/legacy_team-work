@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
-    "start": "babel js -d dist"
+    "testTimer": "mocha --compilers js:babel-core/register ./test/timer.test.js",
+    "start": "babel js -d dist",
+    "watch": "webpack --progress --colors --watch"
   },
   "author": "",
   "license": "ISC",
@@ -25,5 +27,8 @@
     "timer-shim": "^0.3.0",
     "w3cjs": "^0.3.0",
     "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "events": "^1.1.0"
   }
 }

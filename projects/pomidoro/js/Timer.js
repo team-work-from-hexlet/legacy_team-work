@@ -1,3 +1,5 @@
+import {EventEmitter} from 'events';
+
 const STATES = {
     paused: Symbol('paused'),
     running: Symbol('running'),
@@ -11,10 +13,9 @@ const _state = Symbol('state');
 const _remainingTime = Symbol('remainingTime');
 const _startTime = Symbol('startTime');
 const _intervalId = Symbol('intervalId');
-const _pauseTime = Symbol('pauseTime');
 
 
-const Timer = class {
+class Timer extends EventEmitter {
   
   static getStatesList() {
     return STATES;
@@ -28,10 +29,12 @@ const Timer = class {
   }
   
   constructor(title='', duration=1500000) {
+    super();
     this.title = title;
     this.duration = duration;
     this[_state] = STATES.paused;
     this[_remainingTime] = duration;
+    this[_startTime] = new Date();
   }
   
   getState() {
@@ -39,38 +42,21 @@ const Timer = class {
   }
   
   getRemainingTime() {
+    this.recalcRemainingTime();
     return this[_remainingTime];
   }
-  
-  counter(time) {
-    // if(0 || state.pause) complete();
+
+  recalcRemainingTime() {
+    this[_remainingTime] -= (new Date() - this[_startTime]);
+    
+    if (this[_remainingTime] <= 0) {
+      this.emit('done');
+      this.reset();
+      this.pause();
+      return;
+    }
+    
     this[_startTime] = new Date();
-    (function tick() {
-      this[_intervalId] = setTimeout(() => {
-        this[_remainingTime] = time - (new Date() - this[_startTime]);
-        if (this[_remainingTime] <= 0) {
-          this.changeState();
-          return;
-        }
-        tick();
-      }, 1000);
-    })();
-  }
-
-  // while(true) {
-    // if 0 -> alert, reset counter, start break time
-    // if 0 -> alert, reset break, start counter time
-  // }
-
-  
-  changeState() {
-    // state -> next state
-    // if (work) -> break
-    // if (break) -> work
-    // if(pause) -> pause & set nextState
-    // alert(state ... over)
-    // set next state
-    // count() (nextState) // if pause -> continue
   }
   
   start() {
@@ -79,36 +65,26 @@ const Timer = class {
     clearInterval(this[_intervalId]);
     //ориентироваться на системное время из-за неточности таймеров
     this[_startTime] = new Date();
-    
-    //todo: воткнуть counter
     this[_intervalId] = setInterval(() => {
-        this[_remainingTime] = (this[_pauseTime] ? this[_pauseTime] : this.duration) - (new Date() - this[_startTime]); 
+      this.recalcRemainingTime();
+      this[_startTime] = new Date();
     }, 1000);
-  }
-
-  // may be
-  // get pauseTime () {
-    // return this[_pauseTime];
-  // }
-  // ??
-  getPauseTime() {
-    return this[_pauseTime];
   }
   
   pause() {
     this[_state] = STATES.paused;
-    this[_pauseTime] = this[_remainingTime];
+    this.recalcRemainingTime();
     clearInterval(this[_intervalId]);
   }
   
   reset() {
     this[_startTime] = new Date();
     this[_remainingTime] = this.duration;
-    this[_pauseTime] = null;
   }
   
   // m.b. toJSON() or toString()?
   exportToJSON() {
+    this.recalcRemainingTime();
     return JSON.stringify({
       title: this.title,
       duration: this.duration,

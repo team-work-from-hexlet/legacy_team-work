@@ -10,10 +10,10 @@
     <div id="addForm"> <!-- форма добавления -->
         <script type="text/javascript">
             function outputWorkUpdate(vol) {
-    	        document.querySelector('#volumeWork').value = vol;
+    	        document.querySelector('#volumeWork').value = vol + ' min';
             }
             function outputBreakUpdate(vol) {
-    	        document.querySelector('#volumeBreak').value = vol;
+    	        document.querySelector('#volumeBreak').value = vol + ' min';
             }
             function formShow() {
             document.querySelectorAll('.addForm>div')[0].style.display = '';
@@ -22,8 +22,8 @@
         <button value="Add form" id="addButton" onclick="formShow()">Add form</button>
         <div class="addForm">
             <label for="timerTitle">Timer title: </label><input id="timerTitle" type="text" name="Title"/><br>
-            <label for="workTime">Work time: </label><input id="workTime" type="range" min="1" step="1" max="180" value="25" name="Title" oninput="outputWorkUpdate(value)"/><output for="workTime" id="volumeWork">25</output><br>
-            <label for="breakTime">Break time: </label><input id="breakTime" type="range" min="1" step="1" value="5" max="30" name="Title" oninput="outputBreakUpdate(value)"/><output for="breakTime" id="volumeBreak">5</output><br>
+            <label for="workTime">Work time: </label><input id="workTime" type="range" min="1" step="1" max="180" value="25" name="Title" oninput="outputWorkUpdate(value)"/><output for="workTime" id="volumeWork">25 min</output><br>
+            <label for="breakTime">Break time: </label><input id="breakTime" type="range" min="1" step="1" value="5" max="30" name="Title" oninput="outputBreakUpdate(value)"/><output for="breakTime" id="volumeBreak">5 min</output><br>
         </div>
     </div>
     

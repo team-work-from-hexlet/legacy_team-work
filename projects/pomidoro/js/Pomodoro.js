@@ -63,8 +63,9 @@ class Pomodoro {
     let html = '';
     html += '<div>';
     html += this[_timers][0].title;
-    html += " - ";
-    html += this[_timers][0].getRemainingTime();
+    html += ": ";
+    html += Math.round(this[_timers][0].getRemainingTime() / 1000);
+    html += " sec"
     html += '</div>';
     
     return html;
@@ -75,7 +76,7 @@ class Pomodoro {
   }
   
   save() {
-    window.localStorage.setItem('pomodoro-timers', JSON.stringify(this.timers));
+    window.localStorage.setItem('pomodoro-timers', JSON.stringify(this[_timers]));
   }
   
   load() {

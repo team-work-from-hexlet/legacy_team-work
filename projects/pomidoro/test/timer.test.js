@@ -23,16 +23,13 @@ describe('Timer test', () => {
   
   it('should create timer obj', () => {
     let timerObj1 = new Timer('testTimer1', 111);
-    assert.deepEqual(timerObj1, {
-      title: 'testTimer1', 
-      duration: 111,
-    });
+    assert.strictEqual(timerObj1.title, 'testTimer1');
+    assert.strictEqual(timerObj1.duration, 111);
     
     let timerObj2 = new Timer('testTimer2', 222);
-    assert.deepEqual(timerObj2, {
-      title: 'testTimer2', 
-      duration: 222,
-    });
+    assert.strictEqual(timerObj2.title, 'testTimer2');
+    assert.strictEqual(timerObj2.duration, 222);
+
   });
   
   it('test timer start', () => {
@@ -52,19 +49,29 @@ describe('Timer test', () => {
     assert.equal(t.getState(), STATES.paused);
   });
   
+  it('test resume from pause', () => {
+    let t = new Timer('t', 2000);
+    t.start();
+    const STATES = Timer.getStatesList();
+    assert.equal(t.getState(), STATES.running);
+    clock.tick(500);
+    t.pause();
+    assert.equal(t.getState(), STATES.paused);
+    clock.tick(1000);
+    t.start();
+    clock.tick(500);
+    assert.equal(t.getRemainingTime(), 1000);
+  })
+  
   it('test timer ticking', () => {
     let t = new Timer('timer1', 5000);
     t.start();
+    
     clock.tick(500);
     assert.equal(t.getRemainingTime(), 4500);
     clock.tick(2000);
     assert.equal(t.getRemainingTime(), 2500);
-    clock.tick(1500);
-    assert.equal(t.getRemainingTime(), 1000);
-    clock.tick(1000);
-    assert.equal(t.getRemainingTime(), 0);
-    clock.tick(500);
-    assert.equal(t.getRemainingTime(), -500);
+    
   });
   
   it('should reset timer', () => {
@@ -77,10 +84,6 @@ describe('Timer test', () => {
     assert.equal(t.getRemainingTime(), 2000);
     clock.tick(1500);
     assert.equal(t.getRemainingTime(), 500);
-    t.reset();
-    assert.equal(t.getRemainingTime(), 2000);
-    clock.tick(2500);
-    assert.equal(t.getRemainingTime(), -500);
     t.reset();
     assert.equal(t.getRemainingTime(), 2000);
   });
@@ -111,14 +114,15 @@ describe('Timer test', () => {
     assert.strictEqual(timerFromJSON.title, data.title);
     assert.strictEqual(timerFromJSON.duration, data.duration);
     assert.strictEqual(timerFromJSON.getRemainingTime(), data.remainingTime);
-  })
-  
-  it('test pause time', () => {
-    let t = new Timer('testPause', 5000);
-    t.start();
-    assert.isNotTrue( t.getPauseTime() );
-    clock.tick(1500);
-    t.pause();
-    assert.equal(t.getPauseTime(), t.getRemainingTime());
   });
+  
+  it('should test done event', (done) => {
+    let t = new Timer('t1', 5000);
+    t.start();
+    t.on('done', done);
+    clock.tick(500);
+    clock.tick(1000);
+    clock.tick(7000);
+  });
+  
 });
