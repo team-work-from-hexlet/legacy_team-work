@@ -14,11 +14,11 @@ describe('Timer test', () => {
   let clock;
   
   beforeEach(() => {
-      clock = sinon.useFakeTimers();
+    clock = sinon.useFakeTimers();
   });
   
   afterEach(() => {
-      clock.restore();
+    clock.restore();
   });
   
   it('should create timer obj', () => {
@@ -57,7 +57,9 @@ describe('Timer test', () => {
     clock.tick(500);
     t.pause();
     assert.equal(t.getState(), STATES.paused);
-    clock.tick(1000);
+    assert.equal(t.getRemainingTime(), 1500);
+    clock.tick(5700);
+    assert.equal(t.getRemainingTime(), 1500);
     t.start();
     clock.tick(500);
     assert.equal(t.getRemainingTime(), 1000);

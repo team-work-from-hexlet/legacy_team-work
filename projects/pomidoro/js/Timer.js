@@ -42,7 +42,9 @@ class Timer extends EventEmitter {
   }
   
   getRemainingTime() {
-    this.recalcRemainingTime();
+    if (this[_state] != STATES.paused) {
+      this.recalcRemainingTime();
+    }
     return this[_remainingTime];
   }
 

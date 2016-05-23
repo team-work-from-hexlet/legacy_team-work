@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
     "testTimer": "mocha --compilers js:babel-core/register ./test/timer.test.js",
+    "testTomato": "mocha --compilers js:babel-core/register ./test/tomato.test.js",
     "start": "babel js -d dist",
     "watch": "webpack --progress --colors --watch"
   },
