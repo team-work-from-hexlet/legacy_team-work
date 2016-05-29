@@ -19,11 +19,3 @@
 * toDo
 * pomodoro
 * tetris
-
-# Участники коопа:
-* [Аркадий (eye)]( https://github.com/maoeye18 "Аркадий (eye)")  
-* [Александр (sanykey)]( https://github.com/sanykey "Александр (sanykey)")  
-* [Александр (MacOSO)]( https://github.com/MacOSO "Александр (MacOSO)")    
-* [Максим (francoder)](https://github.com/francoder "Максим (francoder)")  
-* [Игорь (openlibser)](https://github.com/openlibser "Игорь (openlibser)")   
-
